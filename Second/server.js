@@ -2,9 +2,14 @@ import express from 'express';//type :  module
 import mongoose from 'mongoose';
 import 'dotenv/config'
 
-mongoose.connect('')
 
-const app = express(process.env.MONGO_URI);
+(async ()=>{
+  const connectionInstance = await mongoose.connect(process.env.MONGO_URI);
+  console.log(connectionInstance.connection.host)
+})()
+
+
+const app = express();
 
 app.get('/', (req, res)=>{
   res.send("The Server is running fine");
